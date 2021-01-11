@@ -85,9 +85,10 @@ const IMCForm = () => {
   const CustomLabelStyles = {
     fontSizeFocused: 20,
     fontSizeBlurred: 25,
+    topFocused: -30,
   };
   const LabelStyles = {
-    top: 10,
+    top: 25,
   };
   const {
     CalculateButton,

@@ -13,49 +13,54 @@ import HistoricoON from '../assets/HistoricoON.svg';
 
 const Tab = createMaterialBottomTabNavigator();
 
-const Tabs = () => (
-  <Tab.Navigator
-    initialRouteName="Home"
-    backBehavior="history"
-    labeled={false}
-    activeColor="#007eeb"
-    inactiveColor="#adadad"
-    barStyle={styles.barStyle}>
-    <Tab.Screen
-      name="History"
-      component={HistoryScreen}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <View style={styles.iconStyle}>
-            {color === '#007eeb' ? <HistoricoON /> : <Historico />}
-          </View>
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Home"
-      component={HomeScreen}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <View style={styles.iconStyle}>
-            {color === '#007eeb' ? <AtividadeON /> : <Atividade />}
-          </View>
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Profile"
-      component={ProfileScreen}
-      options={{
-        tabBarIcon: ({ color }) => (
-          <View style={styles.iconStyle}>
-            {color === '#007eeb' ? <PerfilON /> : <Perfil />}
-          </View>
-        ),
-      }}
-    />
-  </Tab.Navigator>
-);
+const Tabs = ({ route }) => {
+  const params = route.params;
+  return (
+    <Tab.Navigator
+      initialRouteName={
+        params?.initialRouteName ? params.initialRouteName : 'Home'
+      }
+      backBehavior="history"
+      labeled={false}
+      activeColor="#007eeb"
+      inactiveColor="#adadad"
+      barStyle={styles.barStyle}>
+      <Tab.Screen
+        name="History"
+        component={HistoryScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <View style={styles.iconStyle}>
+              {color === '#007eeb' ? <HistoricoON /> : <Historico />}
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <View style={styles.iconStyle}>
+              {color === '#007eeb' ? <AtividadeON /> : <Atividade />}
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <View style={styles.iconStyle}>
+              {color === '#007eeb' ? <PerfilON /> : <Perfil />}
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 const styles = StyleSheet.create({
   barStyle: {

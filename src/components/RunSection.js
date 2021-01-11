@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import PerfilImage from '../assets/circulo.svg';
 
-const RunSection = ({ date, duration }) => {
+const RunSection = ({ date, duration, navigation }) => {
   const {
     containerStyle,
     perfilStyle,
@@ -11,13 +12,16 @@ const RunSection = ({ date, duration }) => {
     durationStyle,
   } = styles;
   return (
-    <View style={containerStyle}>
-      <PerfilImage height={50} width={50} style={perfilStyle} />
-      <View style={textContainerStyle}>
-        <Text style={dateStyle}>{date}</Text>
-        <Text style={durationStyle}>Duração: {duration} min</Text>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('Graphic', { date, duration })}>
+      <View style={containerStyle}>
+        <PerfilImage height={50} width={50} style={perfilStyle} />
+        <View style={textContainerStyle}>
+          <Text style={dateStyle}>{date}</Text>
+          <Text style={durationStyle}>Duração: {duration} min</Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

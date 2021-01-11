@@ -7,7 +7,7 @@ import Steps from '../assets/steps.svg';
 import Fire from '../assets/fire.svg';
 import Bluetooth from '../assets/bluetooth.svg';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const {
     viewStyle,
     perfilAndProgressStyle,
@@ -41,7 +41,7 @@ const HomeScreen = () => {
         <Text style={pulseiraText}>PULSEIRA CONECTADA</Text>
         <Bluetooth />
       </View>
-      <TouchableOpacity onPress={() => console.log('COMEÇOU')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Run')}>
         <LinearGradient colors={['#00c6fb', '#005bea']} style={StartButton}>
           <Text style={StartButtonTextStyle}>COMEÇAR</Text>
         </LinearGradient>
