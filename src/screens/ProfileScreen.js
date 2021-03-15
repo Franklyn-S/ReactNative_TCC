@@ -6,7 +6,7 @@ import UserInfo from '../components/UserInfo';
 const ProfileScreen = () => {
   const { ScreenStyle } = styles;
   return (
-    <View style={ScreenStyle}>
+    <View style={ScreenStyle} accessible={true} accessibilityLabel="Perfil">
       <UserInfo userData={{ name: 'Franklyn Seabra', age: 21 }} />
       <IMCForm />
     </View>

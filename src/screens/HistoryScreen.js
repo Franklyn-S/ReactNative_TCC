@@ -6,42 +6,42 @@ const HistoryScreen = ({ navigation }) => {
   return (
     <ScrollView style={styles.ScrollViewStyle}>
       <RunSection
-        date="30 de Dezembro"
+        date="08 de Dezembro"
         duration="58:00"
         navigation={navigation}
       />
       <RunSection
-        date="30 de Dezembro"
+        date="07 de Dezembro"
         duration="58:00"
         navigation={navigation}
       />
       <RunSection
-        date="30 de Dezembro"
+        date="06 de Dezembro"
         duration="58:00"
         navigation={navigation}
       />
       <RunSection
-        date="30 de Dezembro"
+        date="05 de Dezembro"
         duration="58:00"
         navigation={navigation}
       />
       <RunSection
-        date="30 de Dezembro"
+        date="04 de Dezembro"
         duration="58:00"
         navigation={navigation}
       />
       <RunSection
-        date="30 de Dezembro"
+        date="03 de Dezembro"
         duration="58:00"
         navigation={navigation}
       />
       <RunSection
-        date="31 de Dezembro"
+        date="02 de Dezembro"
         duration="58:00"
         navigation={navigation}
       />
       <RunSection
-        date="30 de Dezembro"
+        date="01 de Dezembro"
         duration="58:00"
         navigation={navigation}
       />

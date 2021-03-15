@@ -12,8 +12,17 @@ const UserInfo = ({ userData }) => {
   } = styles;
   return (
     <View style={userInfoContainerStyle}>
-      {profilePic ? profilePic : <PerfilON height={70} width={70} />}
-      <View style={textContainerStyle}>
+      {profilePic ? (
+        profilePic
+      ) : (
+        <PerfilON
+          height={70}
+          width={70}
+          accessible={true}
+          accessibilityLabel="Foto de perfil padrão."
+        />
+      )}
+      <View style={textContainerStyle} accessible={true}>
         <Text style={nameStyle}>{name}</Text>
         <Text style={ageStyle}>{age} anos</Text>
       </View>

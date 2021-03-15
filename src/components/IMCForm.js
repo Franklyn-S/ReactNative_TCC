@@ -60,16 +60,17 @@ const IMCForm = () => {
       color: '#000',
       borderBottomWidth: 1,
       borderBottomColor: pesoFocused ? '#005bea' : '#555',
+      marginBottom: 20,
     },
     ResultStyle: {
       fontSize: 75,
-      color: '#777',
+      color: '#404A50',
       fontWeight: 'bold',
     },
     ResultIndicatorStyle: {
       bottom: 10,
       fontSize: 30,
-      color: '#777',
+      color: '#404A50',
       fontWeight: 'bold',
     },
     ResultContainer: {
@@ -127,12 +128,12 @@ const IMCForm = () => {
         onBlur={() => setAlturaFocused(false)}
       />
       <TouchableOpacity onPress={() => calculateIMC(peso, altura)}>
-        <LinearGradient colors={['#00c6fb', '#005bea']} style={CalculateButton}>
+        <LinearGradient colors={['#006EED', '#005bea']} style={CalculateButton}>
           <Text style={CalculateButtonTextStyle}>CALCULAR IMC</Text>
         </LinearGradient>
       </TouchableOpacity>
       {IMC ? (
-        <View style={ResultContainer}>
+        <View style={ResultContainer} accessible={true}>
           <Text style={ResultStyle}>{IMC.toFixed(2)}</Text>
           <Text style={ResultIndicatorStyle}>
             {IMC && calculaIMCIndicator()}

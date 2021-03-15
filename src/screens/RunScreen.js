@@ -145,34 +145,60 @@ const RunScreen = () => {
         {km.toFixed(1)} <Text style={kmStyle}>km</Text>
       </Text>
       <View style={infosStyle}>
-        <View style={infoContainer}>
-          <Clock style={infosImgStyle} height={30} width={30} />
+        <View style={infoContainer} accessible={true}>
+          <Clock
+            style={infosImgStyle}
+            height={30}
+            width={30}
+            accessibilityLabel="Tempo de corrida:"
+          />
           <Text style={infosTextStyle}>
             {hour ? `${('00' + hour).slice(-2)}:` : ''}
             {('00' + min).slice(-2)}:{('00' + sec).slice(-2)}
           </Text>
         </View>
-        <View style={infoContainer}>
-          <Fire style={infosImgStyle} height={30} width={30} />
+        <View style={infoContainer} accessible={true}>
+          <Fire
+            style={infosImgStyle}
+            height={30}
+            width={30}
+            accessibilityLabel="Calorias perdidas: "
+          />
           <Text style={infosTextStyle}>{kcal} kcal</Text>
         </View>
-        <View style={infoContainer}>
-          <Heart style={infosImgStyle} height={30} width={30} />
+        <View style={infoContainer} accessible={true}>
+          <Heart
+            style={infosImgStyle}
+            height={30}
+            width={30}
+            accessibilityLabel="Calorias perdidas: "
+          />
           <Text style={infosTextStyle}>-</Text>
         </View>
       </View>
       {currentState === STATES.running ? (
         <View style={buttonsStyleRunning}>
-          <TouchableOpacity onPress={pauseRunning}>
+          <TouchableOpacity
+            onPress={pauseRunning}
+            accessible={true}
+            accessibilityLabel="Batimento Cardíaco: ">
             <Pause height={130} width={130} />
           </TouchableOpacity>
         </View>
       ) : (
         <View style={buttonsStyle}>
-          <TouchableOpacity onPress={startRunning}>
+          <TouchableOpacity
+            onPress={startRunning}
+            accessible={true}
+            accessibilityLabel={`${
+              STATES.paused ? 'Continuar' : 'Começar'
+            } corrida.`}>
             <Play height={130} width={130} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={stopRunning}>
+          <TouchableOpacity
+            onPress={stopRunning}
+            accessible={true}
+            accessibilityLabel="Terminar corrida.">
             <Stop height={130} width={130} />
           </TouchableOpacity>
         </View>

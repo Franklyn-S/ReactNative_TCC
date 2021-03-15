@@ -23,26 +23,39 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={viewStyle}>
-      <View style={perfilAndProgressStyle}>
+      <View
+        style={perfilAndProgressStyle}
+        accessible={true}
+        accessibilityLabel="Progresso: 75%">
         <Progress height={300} width={300} style={progressStyle} />
         <PerfilImage height={220} width={220} style={perfilStyle} />
       </View>
       <View style={infosStyle}>
-        <View style={infosStyle}>
-          <Steps height={50} width={50} />
+        <View style={infosStyle} accessible={true}>
           <Text style={numbers}>7455</Text>
+          <Steps
+            height={50}
+            width={50}
+            accessible={true}
+            accessibilityLabel="Passos"
+          />
         </View>
-        <View style={infosStyle}>
-          <Fire height={50} width={50} />
+        <View style={infosStyle} accessible={true}>
           <Text style={numbers}>1127</Text>
+          <Fire
+            height={50}
+            width={50}
+            accessible={true}
+            accessibilityLabel="Calorias"
+          />
         </View>
       </View>
-      <View style={pulseiraStyle}>
+      <View style={pulseiraStyle} accessible={true}>
         <Text style={pulseiraText}>PULSEIRA CONECTADA</Text>
-        <Bluetooth />
+        <Bluetooth accessible={true} accessibilityLabel="por bluetooth" />
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('Run')}>
-        <LinearGradient colors={['#00c6fb', '#005bea']} style={StartButton}>
+        <LinearGradient colors={['#006EED', '#005bea']} style={StartButton}>
           <Text style={StartButtonTextStyle}>COMEÇAR</Text>
         </LinearGradient>
       </TouchableOpacity>
@@ -68,7 +81,7 @@ const styles = StyleSheet.create({
   },
   infosStyle: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     justifyContent: 'space-evenly',
     alignContent: 'center',
     alignItems: 'center',

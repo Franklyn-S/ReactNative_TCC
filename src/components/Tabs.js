@@ -26,6 +26,9 @@ const Tabs = ({ route }) => {
       inactiveColor="#adadad"
       barStyle={styles.barStyle}>
       <Tab.Screen
+        accessibilityRole="tab"
+        accessible={true}
+        accessibilityLabel="Tela de histórico de atividades."
         name="History"
         component={HistoryScreen}
         options={{
@@ -37,7 +40,10 @@ const Tabs = ({ route }) => {
         }}
       />
       <Tab.Screen
+        accessibilityRole="tab"
         name="Home"
+        accessible={true}
+        accessibilityLabel="Tela inicial."
         component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => (
@@ -48,8 +54,11 @@ const Tabs = ({ route }) => {
         }}
       />
       <Tab.Screen
+        accessibilityRole="tab"
         name="Profile"
         component={ProfileScreen}
+        accessible={true}
+        accessibilityLabel="Tela de perfil e calculo do IMC."
         options={{
           tabBarIcon: ({ color }) => (
             <View style={styles.iconStyle}>

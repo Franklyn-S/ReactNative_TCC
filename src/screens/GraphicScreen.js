@@ -4,7 +4,7 @@ import LeftArrow from '../assets/seta.svg';
 import Graphic from '../assets/grafico.svg';
 
 const GraphicScreen = ({ route, navigation }) => {
-  const { date, duration, unidade } = route.params;
+  const { duration } = route.params;
   const {
     backButton,
     info,
@@ -24,40 +24,37 @@ const GraphicScreen = ({ route, navigation }) => {
       <View style={horizontalLine} />
       <TouchableOpacity
         onPress={() => navigation.navigate('Tabs')}
-        style={backButton}>
-        <LeftArrow />
+        style={backButton}
+        accessible={true}
+        accessibilityLabel="Voltar"
+        accessibilityHint="Volta para a tela anterior">
+        <LeftArrow height="40" width="40" />
       </TouchableOpacity>
-      {/* <Text style={titulo}>{date}</Text> */}
       <Text style={titulo}>10/10</Text>
       <View style={graphicWrapper}>
         <Graphic style={graphic} width={'100%'} heigh={'100%'} />
       </View>
       <View style={flexbox}>
-        <View style={viewItens}>
-          {/* <Text>{passos}</Text> */}
+        <View style={viewItens} accessible={true}>
           <Text style={info}>8453</Text>
           <Text style={subtitle}>Passos</Text>
         </View>
-        <View style={viewItens}>
+        <View style={viewItens} accessible={true}>
           <Text style={info}>{duration}</Text>
           <Text style={subtitle}>Duração</Text>
         </View>
       </View>
       <View style={flexbox}>
-        <View style={viewItens}>
-          {/* <Text>{distancia}</Text> */}
+        <View style={viewItens} accessible={true}>
           <Text style={info}>
             3.72 <Text style={unidadeStyle}>km</Text>
           </Text>
-
           <Text style={subtitle}>Distância</Text>
         </View>
-        <View style={viewItens}>
-          {/* <Text>{calorias}</Text> */}
+        <View style={viewItens} accessible={true}>
           <Text style={info}>
             908 <Text style={unidadeStyle}>kcal</Text>
           </Text>
-
           <Text style={subtitle}>Calorias</Text>
         </View>
       </View>
