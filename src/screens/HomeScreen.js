@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Progress from '../assets/progress.svg';
 import PerfilImage from '../assets/circulo.svg';
@@ -22,7 +28,7 @@ const HomeScreen = ({ navigation }) => {
   } = styles;
 
   return (
-    <View style={viewStyle}>
+    <ScrollView contentInsetAdjustmentBehavior="automatic" style={viewStyle}>
       <View
         style={perfilAndProgressStyle}
         accessible={true}
@@ -32,22 +38,12 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <View style={infosStyle}>
         <View style={infosStyle} accessible={true}>
+          <Steps height={50} width={50} accessibilityLabel="Passos:" />
           <Text style={numbers}>7455</Text>
-          <Steps
-            height={50}
-            width={50}
-            accessible={true}
-            accessibilityLabel="Passos"
-          />
         </View>
         <View style={infosStyle} accessible={true}>
+          <Fire height={50} width={50} accessibilityLabel="Calorias:" />
           <Text style={numbers}>1127</Text>
-          <Fire
-            height={50}
-            width={50}
-            accessible={true}
-            accessibilityLabel="Calorias"
-          />
         </View>
       </View>
       <View style={pulseiraStyle} accessible={true}>
@@ -59,7 +55,7 @@ const HomeScreen = ({ navigation }) => {
           <Text style={StartButtonTextStyle}>COMEÇAR</Text>
         </LinearGradient>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -69,19 +65,26 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   perfilAndProgressStyle: {
-    marginBottom: 40,
+    margin: 'auto',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   progressStyle: {
-    left: '15%',
+    margin: 'auto',
+    width: '50%',
+    display: 'flex',
+    alignContent: 'center',
+    justifyContent: 'center',
   },
   perfilStyle: {
     position: 'absolute',
     top: '20%',
-    left: '24%',
+    margin: 'auto',
+    width: '50%',
   },
   infosStyle: {
     display: 'flex',
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignContent: 'center',
     alignItems: 'center',

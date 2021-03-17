@@ -1,5 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  AccessibilityInfo,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
 
@@ -9,26 +15,16 @@ const IMCForm = () => {
   const [IMC, setIMC] = useState();
   const [pesoFocused, setPesoFocused] = useState(false);
   const [alturaFocused, setAlturaFocused] = useState('');
-  const calculateIMC = () => setIMC(peso / (altura * altura));
-  const calculaIMCIndicator = () => {
-    let indicator = '';
-    if (IMC <= 16.99) {
-      indicator = 'Muito abaixo do peso';
-    } else if (IMC >= 17 && IMC <= 18.49) {
-      indicator = 'Abaixo do peso';
-    } else if (IMC >= 18.5 && IMC <= 24.99) {
-      indicator = 'Peso normal';
-    } else if (IMC >= 25 && IMC <= 29.99) {
-      indicator = 'Sobrepeso';
-    } else if (IMC >= 30 && IMC <= 34.99) {
-      indicator = 'Obesidade Grau I';
-    } else if (IMC >= 35 && IMC <= 40) {
-      indicator = 'Obesidade Grau II';
-    } else if (IMC > 40) {
-      indicator = 'Obesidade Grau III';
-    }
-    return indicator;
+  const resultView = useRef(null);
+
+  const calculateIMC = (weight, height) => {
+    const imc = (weight / (height * height)).toFixed(2);
+    setIMC(imc);
+    AccessibilityInfo.announceForAccessibility(
+      `Seu IMC é ${imc} e você está ${calculaIMCIndicator()}`
+    );
   };
+
   const styles = StyleSheet.create({
     CalculateButton: {
       marginTop: 45,
@@ -53,6 +49,7 @@ const IMCForm = () => {
       color: '#000',
       borderBottomWidth: 1,
       borderBottomColor: alturaFocused ? '#005bea' : '#555',
+      marginBottom: 20,
     },
     InputPesoStyle: {
       paddingTop: 18,
@@ -101,25 +98,50 @@ const IMCForm = () => {
     ResultIndicatorStyle,
     ResultContainer,
   } = styles;
+
+  const calculaIMCIndicator = useCallback(() => {
+    let indicator = '';
+    if (IMC <= 16.99) {
+      indicator = 'Muito abaixo do peso';
+    } else if (IMC >= 17 && IMC <= 18.49) {
+      indicator = 'Abaixo do peso';
+    } else if (IMC >= 18.5 && IMC <= 24.99) {
+      indicator = 'Peso normal';
+    } else if (IMC >= 25 && IMC <= 29.99) {
+      indicator = 'Sobrepeso';
+    } else if (IMC >= 30 && IMC <= 34.99) {
+      indicator = 'Obesidade Grau I';
+    } else if (IMC >= 35 && IMC <= 40) {
+      indicator = 'Obesidade Grau II';
+    } else if (IMC > 40) {
+      indicator = 'Obesidade Grau III';
+    }
+    return indicator;
+  }, [IMC]);
+
   return (
     <View style={ContainerInputStyle}>
       <FloatingLabelInput
+        accessible={true}
+        accessibilityLabel="Digite seu Peso"
         containerStyles={ContainerInputStyle}
         inputStyles={InputPesoStyle}
         keyboardType="decimal-pad"
-        label="Peso"
         customLabelStyles={CustomLabelStyles}
         labelStyles={LabelStyles}
+        label="Peso"
         value={peso}
         onChangeText={setPeso}
         onFocus={() => setPesoFocused(true)}
         onBlur={() => setPesoFocused(false)}
       />
       <FloatingLabelInput
+        accessible={true}
+        accessibilityLabel="Digite sua Altura"
+        label="Altura"
         containerStyles={ContainerInputStyle}
         inputStyles={InputAlturaStyle}
         keyboardType="decimal-pad"
-        label="Altura"
         customLabelStyles={CustomLabelStyles}
         labelStyles={LabelStyles}
         value={altura}
@@ -133,8 +155,8 @@ const IMCForm = () => {
         </LinearGradient>
       </TouchableOpacity>
       {IMC ? (
-        <View style={ResultContainer} accessible={true}>
-          <Text style={ResultStyle}>{IMC.toFixed(2)}</Text>
+        <View ref={resultView} style={ResultContainer} accessible={true}>
+          <Text style={ResultStyle}>{IMC}</Text>
           <Text style={ResultIndicatorStyle}>
             {IMC && calculaIMCIndicator()}
           </Text>

@@ -28,7 +28,7 @@ const GraphicScreen = ({ route, navigation }) => {
         accessible={true}
         accessibilityLabel="Voltar"
         accessibilityHint="Volta para a tela anterior">
-        <LeftArrow height="40" width="40" />
+        <LeftArrow height="48" width="48" />
       </TouchableOpacity>
       <Text style={titulo}>10/10</Text>
       <View style={graphicWrapper}>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 20,
     top: 20,
-    width: 40,
+    width: 50,
     zIndex: 99999,
   },
   graphicWrapper: {

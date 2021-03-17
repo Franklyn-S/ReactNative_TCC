@@ -171,7 +171,7 @@ const RunScreen = () => {
             style={infosImgStyle}
             height={30}
             width={30}
-            accessibilityLabel="Calorias perdidas: "
+            accessibilityLabel="Batimento Cardíaco:"
           />
           <Text style={infosTextStyle}>-</Text>
         </View>
@@ -181,7 +181,7 @@ const RunScreen = () => {
           <TouchableOpacity
             onPress={pauseRunning}
             accessible={true}
-            accessibilityLabel="Batimento Cardíaco: ">
+            accessibilityLabel="Pausar corrida">
             <Pause height={130} width={130} />
           </TouchableOpacity>
         </View>
@@ -191,7 +191,7 @@ const RunScreen = () => {
             onPress={startRunning}
             accessible={true}
             accessibilityLabel={`${
-              STATES.paused ? 'Continuar' : 'Começar'
+              currentState === STATES.paused ? 'Continuar' : 'Começar'
             } corrida.`}>
             <Play height={130} width={130} />
           </TouchableOpacity>

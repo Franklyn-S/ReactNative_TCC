@@ -17,6 +17,7 @@ const Tabs = ({ route }) => {
   const params = route.params;
   return (
     <Tab.Navigator
+      accessibilityRole="tablist"
       initialRouteName={
         params?.initialRouteName ? params.initialRouteName : 'Home'
       }
@@ -26,42 +27,45 @@ const Tabs = ({ route }) => {
       inactiveColor="#adadad"
       barStyle={styles.barStyle}>
       <Tab.Screen
-        accessibilityRole="tab"
         accessible={true}
-        accessibilityLabel="Tela de histórico de atividades."
         name="History"
         component={HistoryScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <View style={styles.iconStyle}>
+            <View
+              style={styles.iconStyle}
+              accessibilityLabel="Tela de histórico"
+              accessibilityHint="Aperte para navegar para a tela de histórico de atividades.">
               {color === '#007eeb' ? <HistoricoON /> : <Historico />}
             </View>
           ),
         }}
       />
       <Tab.Screen
-        accessibilityRole="tab"
         name="Home"
         accessible={true}
         accessibilityLabel="Tela inicial."
+        accessibilityHint="Aperte para navegar para a tela inicial."
+        accessibilityRole="tab"
         component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <View style={styles.iconStyle}>
+            <View style={styles.iconStyle} accessibilityLabel="Tela inicial">
               {color === '#007eeb' ? <AtividadeON /> : <Atividade />}
             </View>
           ),
         }}
       />
       <Tab.Screen
-        accessibilityRole="tab"
         name="Profile"
-        component={ProfileScreen}
         accessible={true}
-        accessibilityLabel="Tela de perfil e calculo do IMC."
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <View style={styles.iconStyle}>
+            <View
+              style={styles.iconStyle}
+              accessibilityLabel="Tela de perfil e cálculo do IMC."
+              accessibilityHint="Aperte para navegar para a tela perfil e cálculo do IMC">
               {color === '#007eeb' ? <PerfilON /> : <Perfil />}
             </View>
           ),
