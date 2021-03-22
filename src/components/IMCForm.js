@@ -123,13 +123,14 @@ const IMCForm = () => {
     <View style={ContainerInputStyle}>
       <FloatingLabelInput
         accessible={true}
-        accessibilityLabel="Digite seu Peso"
+        accessibilityHint="Digite seu Peso"
         containerStyles={ContainerInputStyle}
         inputStyles={InputPesoStyle}
         keyboardType="decimal-pad"
         customLabelStyles={CustomLabelStyles}
         labelStyles={LabelStyles}
         label="Peso"
+        accessibilityValue={{ now: peso }}
         value={peso}
         onChangeText={setPeso}
         onFocus={() => setPesoFocused(true)}
@@ -137,15 +138,16 @@ const IMCForm = () => {
       />
       <FloatingLabelInput
         accessible={true}
-        accessibilityLabel="Digite sua Altura"
+        accessibilityHint="Digite sua Altura"
         label="Altura"
+        accessibilityValue={{ now: altura }}
         containerStyles={ContainerInputStyle}
         inputStyles={InputAlturaStyle}
         keyboardType="decimal-pad"
         customLabelStyles={CustomLabelStyles}
         labelStyles={LabelStyles}
         value={altura}
-        onChangeText={setAltura}
+        onChangeText={a => setAltura(a.replace(',', '.'))}
         onFocus={() => setAlturaFocused(true)}
         onBlur={() => setAlturaFocused(false)}
       />
