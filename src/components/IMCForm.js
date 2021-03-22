@@ -15,6 +15,7 @@ const IMCForm = () => {
   const [IMC, setIMC] = useState();
   const [pesoFocused, setPesoFocused] = useState(false);
   const [alturaFocused, setAlturaFocused] = useState('');
+  const secondInput = useRef(null);
   const resultView = useRef(null);
 
   const calculateIMC = (weight, height) => {
@@ -127,6 +128,7 @@ const IMCForm = () => {
         containerStyles={ContainerInputStyle}
         inputStyles={InputPesoStyle}
         keyboardType="decimal-pad"
+        returnKeyType="next"
         customLabelStyles={CustomLabelStyles}
         labelStyles={LabelStyles}
         label="Peso"
@@ -135,8 +137,10 @@ const IMCForm = () => {
         onChangeText={setPeso}
         onFocus={() => setPesoFocused(true)}
         onBlur={() => setPesoFocused(false)}
+        onSubmitEditing={() => secondInput?.current.focus()}
       />
       <FloatingLabelInput
+        ref={secondInput}
         accessible={true}
         accessibilityHint="Digite sua Altura"
         label="Altura"
@@ -150,6 +154,7 @@ const IMCForm = () => {
         onChangeText={a => setAltura(a.replace(',', '.'))}
         onFocus={() => setAlturaFocused(true)}
         onBlur={() => setAlturaFocused(false)}
+        onSubmitEditing={() => calculateIMC(peso, altura)}
       />
       <TouchableOpacity onPress={() => calculateIMC(peso, altura)}>
         <LinearGradient colors={['#006EED', '#005bea']} style={CalculateButton}>
