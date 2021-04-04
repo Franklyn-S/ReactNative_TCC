@@ -19,11 +19,13 @@ const IMCForm = () => {
   const resultView = useRef(null);
 
   const calculateIMC = (weight, height) => {
-    const imc = (weight / (height * height)).toFixed(2);
-    setIMC(imc);
-    AccessibilityInfo.announceForAccessibility(
-      `Seu IMC é ${imc} e você está ${calculaIMCIndicator()}`
-    );
+    if (weight && height) {
+      const imc = (weight / (height * height)).toFixed(2);
+      setIMC(imc);
+      AccessibilityInfo.announceForAccessibility(
+        `Seu IMC é ${imc} e você está ${calculaIMCIndicator()}`
+      );
+    }
   };
 
   const styles = StyleSheet.create({
@@ -140,6 +142,8 @@ const IMCForm = () => {
         onSubmitEditing={() => secondInput?.current.focus()}
       />
       <FloatingLabelInput
+        mask="9,99"
+        maxLength={3}
         ref={secondInput}
         accessible={true}
         accessibilityHint="Digite sua Altura"

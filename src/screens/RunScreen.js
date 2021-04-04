@@ -15,7 +15,7 @@ const STATES = {
   running: 'running',
   paused: 'paused',
 };
-const RunScreen = () => {
+const RunScreen = ({ navigation }) => {
   const [currentState, setCurrentState] = useState(STATES.stopped);
   const [isPermissionGranted, setIsPermissionGranted] = useState(false);
   const [timer, setTimer] = useState(null);
@@ -137,6 +137,7 @@ const RunScreen = () => {
   const stopRunning = () => {
     setCurrentState(STATES.stopped);
     resetCounters();
+    navigation.navigate('Tabs');
   };
   return (
     <View style={containerStyle}>
